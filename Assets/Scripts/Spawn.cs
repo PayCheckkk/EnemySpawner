@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spawn : MonoBehaviour
 {
-    [SerializeField] private GameObject _template;
+    [SerializeField] private Enemy _template;
 
     private float _cameraLeftBorder = -8;
     private float _cameraRightBorder = 8;
@@ -17,10 +17,10 @@ public class Spawn : MonoBehaviour
         StartCoroutine(SpawnEnemy(_interval, _template));
     }
 
-    private IEnumerator SpawnEnemy(float interval, GameObject enemy)
+    private IEnumerator SpawnEnemy(float interval, Enemy enemy)
     {
         yield return new WaitForSeconds(interval);
-        GameObject newEnemy = Instantiate(enemy, new Vector3(Random.Range(_cameraLeftBorder, _cameraRightBorder), Random.Range(_cameraBottomBorder, _cameraTopBorder),0), Quaternion.identity);
+        Enemy newEnemy = Instantiate(enemy, new Vector3(Random.Range(_cameraLeftBorder, _cameraRightBorder), Random.Range(_cameraBottomBorder, _cameraTopBorder),0), Quaternion.identity);
         StartCoroutine(SpawnEnemy(interval, enemy));
     }
 }
